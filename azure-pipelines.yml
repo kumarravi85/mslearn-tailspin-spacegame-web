@@ -9,7 +9,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-  dotnetSdkVersion: '2.1.505'
+  dotnetSdkVersion: '2.2.203'
 
 steps:
 - task: DotNetCoreInstaller@0
@@ -37,7 +37,7 @@ steps:
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
-    version: 2.1.505
+    version: 2.2.203
 
 - task: DotNetCoreCLI@2
   displayName: 'Build the project - $(buildConfiguration)'
@@ -45,7 +45,7 @@ steps:
     command: 'build'
     arguments: '--no-restore --configuration $(buildConfiguration)'
     projects: '**/*.csproj'
-    version: 2.1.505
+    version: 2.2.203
 
 - task: DotNetCoreCLI@2
   displayName: 'Run unit tests - $(buildConfiguration)'
@@ -54,7 +54,7 @@ steps:
     arguments: '--no-build --configuration $(buildConfiguration)'
     publishTestResults: true
     projects: '**/*.Tests.csproj' 
-    version: 2.1.505
+    version: 2.2.203
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish the project - $(buildConfiguration)'
@@ -64,7 +64,7 @@ steps:
     publishWebProjects: false
     arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
-    version: 2.1.505
+    version: 2.2.203
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
