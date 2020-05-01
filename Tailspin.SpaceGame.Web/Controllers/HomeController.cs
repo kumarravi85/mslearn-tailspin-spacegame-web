@@ -9,7 +9,7 @@ using TailSpin.SpaceGame.Web.Models;
 
 namespace TailSpin.SpaceGame.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : System.Web.Mvc.Controller
     {
         // High score repository.
         private readonly IDocumentDBRepository<Score> _scoreRepository;
@@ -103,12 +103,19 @@ namespace TailSpin.SpaceGame.Web.Controllers
                 // Combine each score with its profile.
                 vm.Scores = scores.Zip(profiles, (score, profile) => new ScoreProfile { Score = score, Profile = profile.Result });
 
-                return View(vm);
+                //return ViewResult(vm);
+                return null;
             }
             catch (Exception)
             {
-                return View(vm);
+                return null;
+                // return ViewResult(vm);
             }
+        }
+
+        private IActionResult ViewResult(LeaderboardViewModel vm)
+        {
+                throw new NotImplementedException();
         }
 
         [Route("/profile/{id}")]
@@ -116,24 +123,28 @@ namespace TailSpin.SpaceGame.Web.Controllers
         {
             try
             {
+                return null;
                 // Fetch the user profile with the given identifier.
-                return View(new ProfileViewModel { Profile = await _profileRespository.GetItemAsync(id), Rank = rank });
+                //return View(new ProfileViewModel { Profile = await _profileRespository.GetItemAsync(id), Rank = rank });
             }
             catch (Exception)
             {
-                return RedirectToAction("/");
+                return null;
+                // return RedirectToAction("/");
             }
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return null;
+            //return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return null;
+            //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
