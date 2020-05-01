@@ -115,7 +115,7 @@ namespace TailSpin.SpaceGame.Web.Controllers
 
         private IActionResult ViewResult(LeaderboardViewModel vm)
         {
-            throw new NotImplementedException();
+                throw new NotImplementedException();
         }
 
         [Route("/profile/{id}")]
