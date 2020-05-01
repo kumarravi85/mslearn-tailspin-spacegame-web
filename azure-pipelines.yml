@@ -35,7 +35,7 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Restore project dependencies'
   inputs:
-    command: 'restore'
+    command: 'nuget restore'
     projects: '**/*.csproj'
     version: 2.2.203
 
